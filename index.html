@@ -157,10 +157,124 @@
 			// both ways accomplish the same end result
 
 			// ---------- var versus let - hoisting ---------- https://youtu.be/7CDUeZh5OCE
-			// console.log('var: ', varTest)
-			// console.log('let: ', letTest)
+			// when vars are hoisted, they are assigned as undefined
+			// when lets are hoisted, they are not assigned anything at all!
+
+			// console.log('var: ', varTest) // logs undefined
+			// console.log('let: ', letTest) // gives us an error 🙁
 			var varTest = 'var worked!'
 			let letTest = 'let worked!'
+
+			// ---------- generate a random hex color ---------- https://youtu.be/6wNt8B8aH80
+			function generateColor() {
+				let randomNum = Math.random()
+				randomNum = randomNum.toString(16) // by passing a radix/base of 16 to the toString method, it converts the random number to hex!
+				return '#' + randomNum.substring(2, 8) // use substring so something like 0.54f6a68d7 is converted to 54f6a6 😄
+			}
+
+			// ---------- map & parseInt() ---------- https://youtu.be/U0WewGAnhNg
+
+			//Why do we get this weird result from the map method?
+			// myarray.map(func);
+			//We want to convert 3 strings into numbers
+
+			let badResult = ['7', '8', '9'].map(parseInt) // returns [7, NaN, NaN], since this map will pass the whole array to parseInt
+			let goodResult = ['7', '8', '9'].map((int) => parseInt(int)) // returns [7, 8, 9] , since this map will pass one int at a time to parseInt
+
+			// ---------- object.property versus object[property] ---------- https://youtu.be/D_ESB34x-Wo
+			// Differences between dot notation and square bracket syntax
+
+			let companies = {
+				auto: 'honda',
+			}
+			let cars = {
+				honda: 'accord',
+				toyota: '4runner',
+			}
+
+			// which of these will work? remember, JS will run [] code first, starting from the inside -> outside
+			// console.log(cars[companies.auto]) // works! the companies.auto converts to 'honda', so cars['honda']
+			// console.log(cars.companies.auto) // does not work! cars does not have .companies 😦
+			// console.log(cars[companies['auto']]) // works! the companies['auto'] converts to 'honda', so cars['honda'] again
+			// console.log(cars[companies[auto]]) // does not work! auto is in [], so it runs first. auto on its own does not exist anywhere!
+
+			// ---------- functions & 'this' ---------- https://youtu.be/DlN8ECKjaJw
+			// Using `this` inside an object
+			// The object has functions created three different ways
+			// What will be the result of the three log statements?
+
+			const circle = {
+				radius: 10,
+				fullFunction: function () {
+					return this.radius // works! the reference for 'this' is whatever called it, so circle! (which has .radius)
+				},
+				shorthandFunction() {
+					return this.radius // also works! same as above, but the shorthand version
+				},
+				arrowFunction: () => {
+					return this.radius // nope! arrowFunction will be looking at the global scope! which does not have anything called 'radius'
+				},
+			}
+
+			// ---------- is it an anagram? ---------- https://youtu.be/YCpxWfxU0NQ
+			let isAnagram = function (string1, string2) {
+				return (
+					string1.split('').sort().join('').toLowerCase() ===
+					string2.split('').sort().join('').toLowerCase()
+				)
+				// split the string into an array of letters -> sort that array -> join that array into a string -> make it case insensitive 😊
+			}
+
+			// console.log(isAnagram('hello', 'jello')) // false
+			// console.log(isAnagram('hello', 'loelh')) // true
+
+			// ---------- largest difference between two ints ---------- https://youtu.be/tM40K-JO_tA
+			let numbers = [12, 2, 6, 5, 9, 10, 33]
+
+			let difference = (function (arr) {
+				return Math.max(...arr) - Math.min(...arr)
+				// simple subtract the Min of the array from the Max of the array!
+				// it's easy using Math.max and the spread ... operator to pass in the array!
+			})(numbers)
+
+			// ---------- panlindromes! (my favorite) ---------- https://youtu.be/saj9KQ3wGtc
+			// is the word (string) spelled the same forwards and backwards?
+
+			const isPalindrome = (word) => {
+				return (
+					word.toLowerCase() === word.split('').reverse().join('').toLowerCase()
+				)
+				// similar to anagrams, is the original word equal to...
+				// the original word split into an array of letters -> reversed -> joined into a string again -> and lowercased?
+				// if so, it's a palindrome! 😁
+			}
+
+			// console.log(isPalindrome('racecar'))     // true
+			// console.log(isPalindrome('boat'))        // false
+			// console.log(isPalindrome('Radar'))       // true
+
+			// ---------- variable chain definitions & scope ---------- https://youtu.be/fWS0Q2jyC_8
+			// this is a tough one, take it one line at a time
+			function varChain() {
+				var a = 1,
+					b = 1
+				var x = (y = 2)
+			}
+			function letChain() {
+				let j = 1,
+					k = 1
+				let r = (s = 2)
+			}
+			varChain()
+			letChain()
+
+			console.log(window.a)
+			// first off, we know a, x, j, & r will be undefined outside of the function
+			// this is because they all immediately follow an assignment like var or let
+			// but what about b, y, k & s? are they affected by the var or let at the beginning of their line?
+			// with a comma, yes! so b is affected by var, and k is affected by let. they are both defined within their functions
+			// y and s both work 😲
+			// since var and let are not applied after the second = on those lines, so JS uses var in the global scope to be safe!
 		</script>
 	</body>
 </html>
