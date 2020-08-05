@@ -512,11 +512,11 @@
 
 			// ---------- array comparisons ---------- https://youtu.be/y9e1RM84kEM
 
-			console.log(['a', 'b'] == ['a', 'b']) // false, arrays are objects, and they are stored in different places in memory
-			console.log(['a', 'b'] == ['a', 'b'] + []) // true, the two right arrays are concatenated, so the right side is a string 'a,b', then the == converts both to strings
-			console.log(['a', 'b', 'c'] == ['a', 'b'] + []) // false, not the same contents after being converted to strings like above
-			console.log(['a', 'b'] == ['b', 'a']) // false, wrong order, and they are different objects in different locations anyways!
-			console.log(['a', 'b'] == 'a,b') // true, the == will convert them both to like type, so string, and 'a,b' == 'a,b'
+			// console.log(['a', 'b'] == ['a', 'b']) // false, arrays are objects, and they are stored in different places in memory
+			// console.log(['a', 'b'] == ['a', 'b'] + []) // true, the two right arrays are concatenated, so the right side is a string 'a,b', then the == converts both to strings
+			// console.log(['a', 'b', 'c'] == ['a', 'b'] + []) // false, not the same contents after being converted to strings like above
+			// console.log(['a', 'b'] == ['b', 'a']) // false, wrong order, and they are different objects in different locations anyways!
+			// console.log(['a', 'b'] == 'a,b') // true, the == will convert them both to like type, so string, and 'a,b' == 'a,b'
 		</script>
 	</body>
 </html>
