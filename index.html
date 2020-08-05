@@ -349,7 +349,24 @@
 			// so bag -> '[Object object]' which I'm sure you've seen before!
 			// can is also converted to '[Object object]' so...
 			// box[bag] is the same as box[can], so box[can] overwrites box[bag], changing it from 'Monday' to 'Tuesday'!
-			console.log(box[bag])
+
+			// ---------- object property comparisons ---------- https://youtu.be/liDs95qmqyc
+			const objectA = { a: 1 }
+			const objectB = { a: 1 }
+			// True or False! remember, == compares equivalency, while === compares the value, but NOT the object contents!
+			const testA = { a: 1 } === { a: 1 } // false! they have the same contents, but they are stored in 2 different spots in memory
+
+			const testB = { a: 1 } == { a: 1 } // false! they are not the same value, since they each have their own reference
+
+			const testC = objectA == { a: 1 } // false! they again are stored differently
+
+			const testD = objectA == objectB // false! starting to see a pattern?
+
+			const testE = Object.is(objectA, objectB) // false! same as the line above!
+
+			const testF = objectA == objectA // true! they are the same object, stored in the same place 😊
+
+			// console.log(testA, testB, testC, testD, testE, testF) // try it!
 		</script>
 	</body>
 </html>
