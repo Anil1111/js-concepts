@@ -5,8 +5,15 @@
 		<title>JavaScript Concepts 🤔</title>
 	</head>
 	<body>
-		<p><em>Open your browser console</em> 💁</p>
+		<h1>
+			Open your browser console 💁
+		</h1>
 		<script>
+			// ************************************************************************************************
+			// Welcome! All console logs are commented out, so just uncomment the ones for the topic you're on!
+			// Feel free to add anything, good luck!
+			// ************************************************************************************************
+
 			// ---------- comparisons ----------
 			const nan = NaN == NaN
 			// false. NaN is not equal to itself
@@ -38,25 +45,25 @@
 			// 3 as a number 🤔 the second + is a unary, so '2' is converted to a number and incremented
 
 			// ---------- timeouts ---------- https://youtu.be/USbiLiF9NDY
-			console.log('first')
+			// console.log('first')
 			const timeoutTest = setTimeout(function () {
-				console.log('fourth')
+				// console.log('fourth')
 			}, 1)
 			const anotherTimeoutTest = setTimeout(function () {
-				console.log('third')
+				// console.log('third')
 			}, 0)
-			console.log('second')
+			// console.log('second')
 			// timeouts are taken away from the main event loop, meaning they will run after any other console logs
 
 			// ---------- async/await ---------- https://youtu.be/j1ykOrC2f0A
 			let asyncNum = 0
 			async function increment() {
 				asyncNum += await 2 // stores 0 in asyncNum, then waits for rest of the stack to finish before adding 2 to make 2
-				console.log(asyncNum)
+				// console.log(asyncNum)
 			}
 			increment()
 			asyncNum += 1
-			console.log(asyncNum) // runs before the console log in increment(), prints 1
+			// console.log(asyncNum) // runs before the console log in increment(), prints 1
 			// console shows 1, then 2
 
 			// ---------- revealing module pattern ---------- https://youtu.be/e0u8z-9aAEw
@@ -64,10 +71,10 @@
 			let personalInfo = (function () {
 				let pets = ['Linus', 'Cody']
 				let name = function () {
-					console.log('Matt Hughes')
+					// console.log('Matt Hughes')
 				}
 				let twitter = function () {
-					console.log('@matthughes2112')
+					// console.log('@matthughes2112')
 				}
 				// these inside functions/items cease to exist once the function is over, so we need to return them 😊
 				return {
@@ -86,7 +93,7 @@
 				// 'arguments' is built in, and contains all the passed arguments!
 				// the function length represents the number of arguments that are required
 				if (arguments.length === twoArguments.length) {
-					console.log(`The two arguments are ${a} and ${b}`)
+					// console.log(`The two arguments are ${a} and ${b}`)
 				}
 			}
 			twoArguments(1) // too few arguments
@@ -117,8 +124,43 @@
 				}
 			})()
 
-			//let obj1 = obj.getInstance();
-			// let obj2 = obj.getInstance();
+			// ---------- closures ---------- https://youtu.be/0iflBympZ1E
+			function closure(a) {
+				let b = 2
+				setTimeout(function () {
+					// console.log(a, b)
+				}, 1000)
+			}
+			closure(1)
+			// this will wait a second, then print out 1 and 2
+
+			function f2() {
+				for (var i = 0; i < 3; i++) {
+					setTimeout(function () {
+						// console.log(i)
+					}, 1000 * i)
+				}
+			}
+			f2()
+			// this will print 3 multiple times, since the var i is incremented all the way to 3 before the timeout of 1000ms has gone by
+			// to fix, change var to let 😊 var i means i is scoped to global/function, let i means i is scoped to just the setTimeout
+
+			// ---------- Array.from ---------- https://youtu.be/PQAuy0e0TFg
+			const randomArray = Array.from({ length: 5 }, (element) => Math.random())
+			// since all arrays have a built-in property called 'length', we can predefine that using an object property!
+			// the second parameter takes a map function, so we can do whatever we like with that! (like random numbers)
+
+			const anotherRandomArray = new Array(5)
+				.fill(null)
+				.map((element) => Math.random())
+			// or, we can use 'new' and pass it a length! then use fill to populate it, then map to change all the nulls to rando numbers!
+			// both ways accomplish the same end result
+
+			// ---------- var versus let - hoisting ---------- https://youtu.be/7CDUeZh5OCE
+			// console.log('var: ', varTest)
+			// console.log('let: ', letTest)
+			var varTest = 'var worked!'
+			let letTest = 'let worked!'
 		</script>
 	</body>
 </html>
