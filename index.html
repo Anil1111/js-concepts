@@ -10,8 +10,14 @@
 		</h1>
 		<script>
 			// ************************************************************************************************
+			//
 			// Welcome! All console logs are commented out, so just uncomment the ones for the topic you're on!
 			// Feel free to add anything, good luck!
+			//
+			// Here is the playlist that this follows along with
+			// They are definitely NOT my videos so please like them & thank the creator: Steve Griffith!
+			// https://www.youtube.com/watch?v=USbiLiF9NDY&list=PLyuRouwmQCjlLW9NjqoBbf9eVaFX4F9UZ
+			//
 			// ************************************************************************************************
 
 			// ---------- comparisons ----------
@@ -268,13 +274,82 @@
 			varChain()
 			letChain()
 
-			console.log(window.a)
+			// console.log(window.a)
+
 			// first off, we know a, x, j, & r will be undefined outside of the function
 			// this is because they all immediately follow an assignment like var or let
 			// but what about b, y, k & s? are they affected by the var or let at the beginning of their line?
 			// with a comma, yes! so b is affected by var, and k is affected by let. they are both defined within their functions
 			// y and s both work 😲
 			// since var and let are not applied after the second = on those lines, so JS uses var in the global scope to be safe!
+
+			// ---------- vowel flip! ---------- https://youtu.be/M3aG5OAOZ4A
+			// function should reverse the order of vowels in the word!
+			// hello -> holle, javascript -> jivascrapt
+
+			const flipVowels = (word) => {
+				let newWord = word.split('')
+				// get an array of the letters
+				const vowelArray = []
+				// will contain all the vowels
+				const positionArray = []
+				// will contain the positions in the string at which there is a vowel
+				newWord.map((letter, index) => {
+					if ('aeiou'.includes(letter)) {
+						// is this letter a vowel?
+						vowelArray.unshift(letter)
+						// pushes the letter (vowel), but in reverse order, since we'll use unshift instead of push
+						positionArray.push(index)
+						// pushes the index in normal order
+					}
+				})
+				positionArray.map((position, index) => {
+					newWord[position] = vowelArray[index]
+				})
+				// take all the positions at which there is a vowel, and insert a vowel from the reversed array of vowels!
+				// since we used unshift for the letters, and push for the positions the letters need to be inserted at...
+				// the last vowel will be inserted at the location of the first vowel, etc.
+				return newWord.join('')
+				// join it back to a string!
+			}
+
+			const huloriais = flipVowels('hilarious') // returns huloriais 😊
+
+			// ---------- object property mayhem ---------- https://youtu.be/pISRR84poC8
+			const propertyObject = {
+				a: 'three',
+				b: 4,
+				c: 'five',
+				a: 3,
+				b: 'four',
+				c: 'five',
+				a: 'tre', // the
+				b: 'fyra', // final
+				c: 5, // values 😊
+			}
+			// this object will be the following, because a later definition of a property will replace earlier ones!
+			// a: "tre",
+			// b: 'fyra',
+			// c: 5
+
+			// ---------- more object property mayhem! ---------- https://youtu.be/_jFO5TL8FKM
+			let box = {}
+			let bag = {
+				prop: 'bag',
+				can: 'box',
+			}
+			let can = {
+				prop: 'can',
+				bag: 'box',
+			}
+			box[bag] = 'Monday'
+			box[can] = 'Tuesday'
+			// funny one! JS objects always convert property names to strings
+			// since we are using bag and not 'bag', it will convert bag to a string, which is actually its type
+			// so bag -> '[Object object]' which I'm sure you've seen before!
+			// can is also converted to '[Object object]' so...
+			// box[bag] is the same as box[can], so box[can] overwrites box[bag], changing it from 'Monday' to 'Tuesday'!
+			console.log(box[bag])
 		</script>
 	</body>
 </html>
