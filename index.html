@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>JavaScript Concepts 🤔</title>
+	</head>
+	<body>
+		<p><em>Open your browser console</em> 💁</p>
+		<script>
+			// ---------- comparisons ----------
+			const nan = NaN == NaN
+			// false. NaN is not equal to itself
+			const doubleEquals = 77 == '77'
+			// true! JS converts it to the same type for us. == compares the content
+			const tripleEquals = 77 === '77'
+			// false! they are not the same type. === compares type AND content
+
+			// ---------- 'this' keyword ----------
+			const car = {
+				make: 'Toyota',
+				passengers: 5,
+				getPassengersRegular: function () {
+					return this.passengers
+				},
+				getPassengersArrow: () => {
+					return this.passengers
+				},
+			}
+			const passengers = car.getPassengersRegular()
+			// 5, as you would expect!
+			const morePassengers = car.getPassengersArrow()
+			// undefined! the 'this' arrow function cannot access the object itself
+
+			// ---------- unary operator ----------
+			const stringResult = 1 + '2'
+			// 12 as a string, the 1 is converted to a string and then concatenated
+			const unaryResult = 1 + +'2'
+			// 3 as a number 🤔 the second + is a unary, so '2' is converted to a number and incremented
+
+			// ---------- timeouts ---------- https://youtu.be/USbiLiF9NDY
+			console.log('first')
+			const timeoutTest = setTimeout(function () {
+				console.log('fourth')
+			}, 1)
+			const anotherTimeoutTest = setTimeout(function () {
+				console.log('third')
+			}, 0)
+			console.log('second')
+			// timeouts are taken away from the main event loop, meaning they will run after any other console logs
+
+			// ---------- async/await ---------- https://youtu.be/j1ykOrC2f0A
+			let asyncNum = 0
+			async function increment() {
+				asyncNum += await 2 // stores 0 in asyncNum, then waits for rest of the stack to finish before adding 2 to make 2
+				console.log(asyncNum)
+			}
+			increment()
+			asyncNum += 1
+			console.log(asyncNum) // runs before the console log in increment(), prints 1
+			// console shows 1, then 2
+
+			// ---------- revealing module pattern ---------- https://youtu.be/e0u8z-9aAEw
+			// this is an IIFE - Immediately Invoked Functional Expression
+			let personalInfo = (function () {
+				let pets = ['Linus', 'Cody']
+				let name = function () {
+					console.log('Matt Hughes')
+				}
+				let twitter = function () {
+					console.log('@matthughes2112')
+				}
+				// these inside functions/items cease to exist once the function is over, so we need to return them 😊
+				return {
+					name,
+					pets,
+				}
+			})()
+			// so outside of the function, we can use the returned 'name' method and 'pets' array, but NOT the 'twitter' method
+			personalInfo.name()
+			personalInfo.pets.push('Froyd')
+			// personalInfo.twitter() would NOT work since it hasn't been returned to the main window
+
+			// ---------- function parameters ---------- https://youtu.be/WyxU9MzUwOw
+			// make sure the function has recieved the correct number of arguments
+			let twoArguments = function (a, b) {
+				// 'arguments' is built in, and contains all the passed arguments!
+				// the function length represents the number of arguments that are required
+				if (arguments.length === twoArguments.length) {
+					console.log(`The two arguments are ${a} and ${b}`)
+				}
+			}
+			twoArguments(1) // too few arguments
+			twoArguments(1, 2) // juuuuuust right!
+			twoArguments(1, 2, 3) // too many arguments
+
+			// ---------- singletons ---------- https://youtu.be/VlTlAAOBlzI
+			// this is an object that will create an instance, or, if an instance has already been created, will give a ref to that instance 😦
+			let objectToCreate = (function () {
+				let theInstance // private instance variable
+				function create() {
+					// if not created yet, let's create it!
+					return {
+						// return the newly created object!
+						singletonObject: {
+							name: 'Matt',
+						},
+					}
+				}
+				return {
+					getInstance: function () {
+						// first, let's check to see if an isntance exists already...
+						if (!theInstance) {
+							theInstance = create()
+						}
+						return theInstance
+					},
+				}
+			})()
+
+			//let obj1 = obj.getInstance();
+			// let obj2 = obj.getInstance();
+		</script>
+	</body>
+</html>
