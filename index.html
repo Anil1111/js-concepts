@@ -18,9 +18,46 @@
 			// They are definitely NOT my videos so please like them & thank the creator: Steve Griffith!
 			// https://www.youtube.com/watch?v=USbiLiF9NDY&list=PLyuRouwmQCjlLW9NjqoBbf9eVaFX4F9UZ
 			//
+			// Here are all the topics, you can ctrl-F to find them below 😊
+			//
+			// comparisons
+			// 'this' keyword
+			// unary operator
+			// timeouts
+			// async/await
+			// revealing module pattern
+			// function parameters
+			// singletons
+			// closures
+			// Array.from
+			// var versus let - hoisting
+			// generate a random hex color
+			// map & parseInt()
+			// object.property versus object[property]
+			// functions & 'this'
+			// is it an anagram?
+			// largest difference between two ints
+			// panlindromes! (my favorite)
+			// variable chain definitions & scope
+			// vowel flip!
+			// object property mayhem
+			// more object property mayhem!
+			// object property comparisons
+			// array positions
+			// callback functions
+			// extending built-in object prototypes
+			// number properties
+			// double bang !!
+			// the comma operator
+			// unary + operator
+			// weird advanced-level questions about operators
+			// array comparisons
+			//
 			// ************************************************************************************************
 
+			// ***************************************************************************
 			// ---------- comparisons ----------
+			// ***************************************************************************
 
 			const nan = NaN == NaN
 			// false. NaN is not equal to itself
@@ -29,7 +66,9 @@
 			const tripleEquals = 77 === '77'
 			// false! they are not the same type. === compares type AND content
 
+			// ***************************************************************************
 			// ---------- 'this' keyword ----------
+			// ***************************************************************************
 
 			const car = {
 				make: 'Toyota',
@@ -46,13 +85,18 @@
 			const morePassengers = car.getPassengersArrow()
 			// undefined! the 'this' arrow function cannot access the object itself
 
+			// ***************************************************************************
 			// ---------- unary operator ----------
+			// ***************************************************************************
+
 			const stringResult = 1 + '2'
 			// 12 as a string, the 1 is converted to a string and then concatenated
 			const unaryResult = 1 + +'2'
 			// 3 as a number 🤔 the second + is a unary, so '2' is converted to a number and then 1 is added
 
+			// ***************************************************************************
 			// ---------- timeouts ---------- https://youtu.be/USbiLiF9NDY
+			// ***************************************************************************
 
 			// console.log('first')
 			const timeoutTest = setTimeout(function () {
@@ -64,7 +108,9 @@
 			// console.log('second')
 			// timeouts are taken away from the main event loop, meaning they will run after any other console logs
 
+			// ***************************************************************************
 			// ---------- async/await ---------- https://youtu.be/j1ykOrC2f0A
+			// ***************************************************************************
 
 			let asyncNum = 0
 			async function increment() {
@@ -76,7 +122,9 @@
 			// console.log(asyncNum) // runs before the console log in increment(), prints 1
 			// console shows 1, then 2
 
+			// ***************************************************************************
 			// ---------- revealing module pattern ---------- https://youtu.be/e0u8z-9aAEw
+			// ***************************************************************************
 
 			// this is an IIFE - Immediately Invoked Functional Expression
 			let personalInfo = (function () {
@@ -98,7 +146,9 @@
 			personalInfo.pets.push('Froyd')
 			// personalInfo.twitter() would NOT work since it hasn't been returned to the main window
 
+			// ***************************************************************************
 			// ---------- function parameters ---------- https://youtu.be/WyxU9MzUwOw
+			// ***************************************************************************
 
 			// make sure the function has recieved the correct number of arguments
 			let twoArguments = function (a, b) {
@@ -112,7 +162,9 @@
 			twoArguments(1, 2) // juuuuuust right!
 			twoArguments(1, 2, 3) // too many arguments
 
+			// ***************************************************************************
 			// ---------- singletons ---------- https://youtu.be/VlTlAAOBlzI
+			// ***************************************************************************
 
 			// this is an object that will create an instance, or, if an instance has already been created, will give a ref to that instance 😦
 			let objectToCreate = (function () {
@@ -137,7 +189,9 @@
 				}
 			})()
 
+			// ***************************************************************************
 			// ---------- closures ---------- https://youtu.be/0iflBympZ1E
+			// ***************************************************************************
 
 			function closure(a) {
 				let b = 2
@@ -159,7 +213,9 @@
 			// this will print 3 multiple times, since the var i is incremented all the way to 3 before the timeout of 1000ms has gone by
 			// to fix, change var to let 😊 var i means i is scoped to global/function, let i means i is scoped to just the setTimeout
 
+			// ***************************************************************************
 			// ---------- Array.from ---------- https://youtu.be/PQAuy0e0TFg
+			// ***************************************************************************
 
 			const randomArray = Array.from({ length: 5 }, (element) => Math.random())
 			// since all arrays have a built-in property called 'length', we can predefine that using an object property!
@@ -171,7 +227,9 @@
 			// or, we can use 'new' and pass it a length! then use fill to populate it, then map to change all the nulls to rando numbers!
 			// both ways accomplish the same end result
 
+			// ***************************************************************************
 			// ---------- var versus let - hoisting ---------- https://youtu.be/7CDUeZh5OCE
+			// ***************************************************************************
 
 			// when vars are hoisted, they are assigned as undefined
 			// when lets are hoisted, they are not assigned anything at all!
@@ -181,7 +239,9 @@
 			var varTest = 'var worked!'
 			let letTest = 'let worked!'
 
+			// ***************************************************************************
 			// ---------- generate a random hex color ---------- https://youtu.be/6wNt8B8aH80
+			// ***************************************************************************
 
 			function generateColor() {
 				let randomNum = Math.random()
@@ -189,7 +249,9 @@
 				return '#' + randomNum.substring(2, 8) // use substring so something like 0.54f6a68d7 is converted to 54f6a6 😄
 			}
 
+			// ***************************************************************************
 			// ---------- map & parseInt() ---------- https://youtu.be/U0WewGAnhNg
+			// ***************************************************************************
 
 			//Why do we get this weird result from the map method?
 			// myarray.map(func);
@@ -198,7 +260,9 @@
 			let badResult = ['7', '8', '9'].map(parseInt) // returns [7, NaN, NaN], since this map will pass the whole array to parseInt
 			let goodResult = ['7', '8', '9'].map((int) => parseInt(int)) // returns [7, 8, 9] , since this map will pass one int at a time to parseInt
 
+			// ***************************************************************************
 			// ---------- object.property versus object[property] ---------- https://youtu.be/D_ESB34x-Wo
+			// ***************************************************************************
 
 			// Differences between dot notation and square bracket syntax
 
@@ -216,7 +280,9 @@
 			// console.log(cars[companies['auto']]) // works! the companies['auto'] converts to 'honda', so cars['honda'] again
 			// console.log(cars[companies[auto]]) // does not work! auto is in [], so it runs first. auto on its own does not exist anywhere!
 
+			// ***************************************************************************
 			// ---------- functions & 'this' ---------- https://youtu.be/DlN8ECKjaJw
+			// ***************************************************************************
 
 			// Using `this` inside an object
 			// The object has functions created three different ways
@@ -235,7 +301,9 @@
 				},
 			}
 
+			// ***************************************************************************
 			// ---------- is it an anagram? ---------- https://youtu.be/YCpxWfxU0NQ
+			// ***************************************************************************
 
 			let isAnagram = function (string1, string2) {
 				return (
@@ -248,7 +316,9 @@
 			// console.log(isAnagram('hello', 'jello')) // false
 			// console.log(isAnagram('hello', 'loelh')) // true
 
+			// ***************************************************************************
 			// ---------- largest difference between two ints ---------- https://youtu.be/tM40K-JO_tA
+			// ***************************************************************************
 
 			let numbers = [12, 2, 6, 5, 9, 10, 33]
 
@@ -258,7 +328,9 @@
 				// it's easy using Math.max and the spread ... operator to pass in the array!
 			})(numbers)
 
+			// ***************************************************************************
 			// ---------- panlindromes! (my favorite) ---------- https://youtu.be/saj9KQ3wGtc
+			// ***************************************************************************
 
 			// is the word (string) spelled the same forwards and backwards?
 
@@ -275,7 +347,9 @@
 			// console.log(isPalindrome('boat'))        // false
 			// console.log(isPalindrome('Radar'))       // true
 
+			// ***************************************************************************
 			// ---------- variable chain definitions & scope ---------- https://youtu.be/fWS0Q2jyC_8
+			// ***************************************************************************
 
 			// this is a tough one, take it one line at a time
 			function varChain() {
@@ -300,7 +374,9 @@
 			// y and s both work 😲
 			// since var and let are not applied after the second = on those lines, so JS uses var in the global scope to be safe!
 
+			// ***************************************************************************
 			// ---------- vowel flip! ---------- https://youtu.be/M3aG5OAOZ4A
+			// ***************************************************************************
 
 			// function should reverse the order of vowels in the word!
 			// hello -> holle, javascript -> jivascrapt
@@ -333,7 +409,9 @@
 
 			const huloriais = flipVowels('hilarious') // returns huloriais 😊
 
+			// ***************************************************************************
 			// ---------- object property mayhem ---------- https://youtu.be/pISRR84poC8
+			// ***************************************************************************
 
 			const propertyObject = {
 				a: 'three',
@@ -351,7 +429,9 @@
 			// b: 'fyra',
 			// c: 5
 
+			// ***************************************************************************
 			// ---------- more object property mayhem! ---------- https://youtu.be/_jFO5TL8FKM
+			// ***************************************************************************
 
 			let box = {}
 			let bag = {
@@ -370,7 +450,9 @@
 			// can is also converted to '[Object object]' so...
 			// box[bag] is the same as box[can], so box[can] overwrites box[bag], changing it from 'Monday' to 'Tuesday'!
 
+			// ***************************************************************************
 			// ---------- object property comparisons ---------- https://youtu.be/liDs95qmqyc
+			// ***************************************************************************
 
 			const objectA = { a: 1 }
 			const objectB = { a: 1 }
@@ -389,7 +471,9 @@
 
 			// console.log(testA, testB, testC, testD, testE, testF) // try it!
 
+			// ***************************************************************************
 			// ---------- array positions ---------- https://youtu.be/XfsPJDyyjdA
+			// ***************************************************************************
 
 			const arrayNumbers = [1, 2, 3]
 			arrayNumbers[10] = 11
@@ -404,7 +488,9 @@
 				// forEach works like it sounds, for EACH entry, where an entry is a non-undefined value, so 1, 2, 3, 11 (skips undefined's)
 			})
 
+			// ***************************************************************************
 			// ---------- callback functions ---------- https://youtu.be/W8PkkO1woDA
+			// ***************************************************************************
 
 			// a callback function is a function that you pass other functions to
 			// it should then call those functions after it does... something... whatever you want!
@@ -432,7 +518,9 @@
 				// myCallBack(goodGuy, badGuy, dwight)
 			})()
 
+			// ***************************************************************************
 			// ---------- extending built-in object prototypes ---------- https://youtu.be/2jpAEz-hUKY
+			// ***************************************************************************
 
 			// using String.prototype, we can add this flip method to ALL strings in scope, very useful!
 			String.prototype.flip = function () {
@@ -442,7 +530,9 @@
 			const puncString = 'Is mayonnaise an instrument?'
 			const flipped = puncString.flip() // returns ?tnemurtsni na esiannoyam sI
 
+			// ***************************************************************************
 			// ---------- number properties ---------- https://youtu.be/hx8JAtcL7fE
+			// ***************************************************************************
 
 			// primitives are just numbers, using the 'new' keyword creates an object
 			const n1 = 111 // this is a primitive
@@ -455,7 +545,9 @@
 			// console.log(n2.property)    // true
 			// console.log(n3.property)    // undefined
 
+			// ***************************************************************************
 			// ---------- double bang !! ---------- https://youtu.be/EBWtsnzuNps
+			// ***************************************************************************
 
 			// ! will try to convert the value to a boolean, and then flip it
 			// so !! will basically just convert the value to a boolean!
@@ -471,14 +563,18 @@
 			// console.log(!!'false') // true, any non-empty string is converted to true as a boolean
 			// console.log(!!null) // false, yet ANOTHER falset value!
 
+			// ***************************************************************************
 			// ---------- the comma operator ---------- https://youtu.be/X_Lr_N_b7PM
+			// ***************************************************************************
 
 			// return values from assignments is the key here
 			// console.log(a = 12) // will return 12
 			// with the commas, n will hold the return value for the final expression, so (z = 3), which returns 3
 			const n = ((x = 1), (y = 2), (z = 3)) // n = 3
 
+			// ***************************************************************************
 			// ---------- unary + operator ---------- https://youtu.be/Ta9rVSCYhWg
+			// ***************************************************************************
 
 			// this is super popular in interviews
 			// a unary takes one single operand, and tries to convert it to a number
@@ -491,7 +587,9 @@
 			// console.log(+7) // 7, it's already a number!
 			// console.log(1 + +'1') // 2! the unary converts the '1' to 1, and then it is 1 + 1
 
+			// ***************************************************************************
 			// ---------- weird advanced-level questions about operators ---------- https://youtu.be/JEXR9OBlcLo
+			// ***************************************************************************
 
 			// this table may help with order of operations:
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table
@@ -510,7 +608,9 @@
 			// true + [] + false
 			// this is somehow a string concatenation, so we get 'truefalse', and the length of that string is 9
 
+			// ***************************************************************************
 			// ---------- array comparisons ---------- https://youtu.be/y9e1RM84kEM
+			// ***************************************************************************
 
 			// console.log(['a', 'b'] == ['a', 'b']) // false, arrays are objects, and they are stored in different places in memory
 			// console.log(['a', 'b'] == ['a', 'b'] + []) // true, the two right arrays are concatenated, so the right side is a string 'a,b', then the == converts both to strings
